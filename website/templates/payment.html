@@ -1,0 +1,65 @@
+{% extends "base.html" %} {% block title %}Payment{% endblock %}
+{% block content%}
+<div class = 'container-content with-img'>
+  <div class = 'container-element element1'>
+    <img id = 'payment-img' src = "{{ url_for( 'static', filename = 'payment.png' ) }}" alt = 'Login' >
+  </div>
+  <div class = 'pay2'>
+    <h1>Dodaj wydatek</h1>
+    <form method = 'POST' id = 'pay-form' autocomplete = 'off'>
+      {% if edit == True %}
+        <div class = 'pay-element'><input class = 'pay-inp1' type = 'text' name = 'payment_name' value = '{{ payment.payment_name }}'/></div>
+        <div class = 'pay-element'><input class = 'pay-inp2' type = 'number' min = '0.01' step = '0.01' name = 'price' value = '{{ payment.price }}'/></div>
+      {% else %}
+        <div class = 'pay-element'><input class = 'pay-inp1' type = 'text' name = 'payment_name' placeholder = 'Nazwa'/></div>
+        <div class = 'pay-element'><input class = 'pay-inp2' type = 'number' min = '0.01' step = '0.01' name = 'price' placeholder = 'Kwota'/></div>
+      {% endif %}
+      <h3 class = 'pay-h3'>Zaznacz uczestników, którzy brali udział w transakcji</h3>
+      <div class= 'list-container pay-list pay-element'>
+        {% for i in range( trip_users|length ) %}
+          <ul>
+            <li class = 'list pay-list-el'>
+              <div class = 'pay-grid'>
+                <label class = 'chceckbox-pay' for = '{{ trip_users_local[i] }}'>{{ trip_users_local[i] }}</label>
+                {% if edit == True %}
+                  {% if trip_usersid[i] in payment_users %}
+                    <input class = 'checkbox' id = '{{ trip_users_local[i] }}' name = 'members' type = 'checkbox' value='{{ trip_users[i] }}' checked/>
+                  {% else %}
+                    <input class = 'checkbox' id = '{{ trip_users_local[i] }}' name = 'members' type = 'checkbox' value='{{ trip_users[i] }}'/>
+                  {% endif %}
+                {% else %}
+                  <input class = 'checkbox' id = '{{ trip_users_local[i] }}' name = 'members' type = 'checkbox' value='{{ trip_users[i] }}'/>
+                {% endif %}
+              </div>
+            </li> 
+          </ul>
+        {% endfor %}
+      </div>
+      <div class = 'pay-element with-margin'>
+        <h3>Wybierz uczestnika, który płacił za transakcję</h3>
+        <select name = 'payer'>   
+          {% for i in range( trip_users|length ) %}
+            {% if edit == True %}
+              {% if trip_usersid[i] == payment.payer_id %}
+                <option value = '{{ trip_users[i] }}' selected>{{ trip_users_local[i] }}</option>
+              {% else %}
+                <option value = '{{ trip_users[i] }}'>{{ trip_users_local[i] }}</option>
+              {% endif %}
+            {% else %}
+              <option value = '{{ trip_users[i] }}'>{{ trip_users_local[i] }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+      <div class = 'pay-element' >
+        {% if edit == True %}
+          <button id = 'btn-bill' class = 'pay-btn pay-btn-flex' type = 'submit'>Edytuj wydatek</button>
+          <button id = 'btn-bill' class = 'pay-btn pay-btn-flex' type = 'submit' name = 'delpayment' value = 'true' onclick = "delAlert( 'wydatek' )">Usuń wydatek</button>
+        {% else %}
+          <button id = 'btn-bill' class = 'pay-btn' type = 'submit'>Dodaj wydatek</button>
+        {% endif %}
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

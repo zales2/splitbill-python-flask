@@ -1,0 +1,71 @@
+.tab .btn-tab {
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    border-bottom: 4px solid black;
+    background-color: white;
+}
+.tab {
+    overflow: hidden;
+    width: 90%;
+    margin-left: 5%;
+    align-items: center;
+}
+.btn-tab {
+    font-size: 18px;
+    width: 40%;
+}
+.btn-tab:first-of-type {
+    margin-left: 10%;
+} 
+.tab button.active {
+    border-bottom: 4px solid cyan;
+}
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    height: 300px;
+}
+.debt-list-container {
+    height: 62%;
+    margin: 25px 4% 0 25px;
+    width: 96%;
+}
+.trip-element {
+    height: 50%;
+}
+.tablinks, .tablinks2 {
+    color: black;
+    border-radius: 0px;
+}
+.tablinks:hover, .tablinks2:hover {
+    transform: none;
+}
+.debt-list {
+    margin-left: 20%;
+    width: 60%;
+}
+.tabcontent2 {
+    height: 80%;
+}
+.add-bill {
+    height: 100%;
+}
+.bil-btn {
+    color: cyan;
+    height: 50px;
+    margin-top: 30px;
+    width: 80%;
+}
+.bill-inp {
+    width: 50%;
+}
+.bil-btn2 {
+    height: 55px;
+}
+#no-admin {
+    margin: 70px 40px 0 40px;
+}

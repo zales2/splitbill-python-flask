@@ -1,0 +1,78 @@
+{% extends "base.html" %} {% block title %} {{ page_name }} {% endblock %}
+{% block content%}
+<div class = 'container-content device'>
+  <div class = 'flex-container'>
+    <h1>Wydatki</h1>
+    <div class = 'list-container trip-list' >
+      <ul>
+        {% for i in range( payments|length -1 , -1, -1 ) %}
+        <li class = 'list'>
+          <a class = 'link-list' href = "{{ url_for( 'auth.editpayment', payment_id = payments[ i ].payment_id ) }}" title = 'Edytuj wydatek'>
+            {{ payments[ i ].payment_name }}: {{ payments[ i ].price }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class = 'flex-container'>
+    <div class = 'trip-element'>
+      <div class = 'tab'>
+        <button class = 'tablinks btn-tab' onclick = "openTab( event, 'transactions', 'tabcontent', 'tablinks' )" id = 'defaultOpen' >Bilans</button>
+        <button class = 'tablinks btn-tab' onclick = "openTab( event, 'balance', 'tabcontent', 'tablinks' )">Zwroty</button>
+      </div>
+      <div id = 'transactions' class = 'tabcontent list-container debt-list-container'>
+        {% if uslist|length != 1 %}
+        <ul>
+          {% for i in range( uslist|length ) %}
+          <li class = 'list debt-list'>
+            {{ uslist[i] }}: {{ debt[i].user_debt }}  
+          </li>
+          {% endfor %} {% endif %}
+        </ul>
+      </div>
+      <div id = 'balance' class = 'tabcontent list-container debt-list-container'>
+        <ul>
+          {% for transaction in transactions %}
+            <li class = 'list debt-list'>
+              {{ transaction.message }} 
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class = 'trip-element'>
+      <div class = 'tab'>
+        <button class = 'tablinks2 btn-tab' onclick = "openTab( event, 'bill', 'tabcontent2', 'tablinks2' )" id = 'defaultOpen2'>Rachunek</button>
+        <button class = 'tablinks2 btn-tab' onclick = "openTab( event, 'others', 'tabcontent2', 'tablinks2' )">Pozostałe</button>
+      </div>
+      <div id = 'bill' class = 'tabcontent2'>
+        <div class = 'add-bill'>
+          <h3>Wyślij zaproszenie do aktywnego użytkownika</h3>
+          <form method = 'POST' autocomplete = 'off'>
+              <input class = 'bill-inp' name = 'user_nick' placeholder = 'Podaj pseudonim' />
+              <button type = 'submit' class = 'button bil-btn2' >Dodaj użytkownika</button>
+          </form>
+          <form method = 'POST'>
+            <button name = 'payment' type = 'submit' class = 'bil-btn' value = 'true'>Dodaj wydatek</button>
+          </form>
+        </div>
+      </div>
+      <div id = 'others' class = 'tabcontent2'>
+        {% if admin %}
+          <h3>Dodaj do rachunku nowego uczesnika (lokalnie)</h3>
+          <form method = 'POST' autocomplete = 'off'>
+            <input class = 'bill-inp' name = 'user_local_nick' placeholder = 'Podaj pseudonim' />
+            <button type = 'submit' class = 'bil-btn2' >Dodaj użytkownika</button>
+          </form>
+          <form method = 'POST' >
+            <button id = 'del-btn' name = 'deltrip' type = 'submit' class = 'bil-btn' value = 'true' onclick = "delAlert( 'rachunek' )">Usuń rachunek</button>
+          </form>
+        {% else %}
+          <h3 id = 'no-admin' >Nie jesteś administratorem wyjazdu, więc możesz mieć ograniczony dostęp do niektórych funkcji.</h3>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

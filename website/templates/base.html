@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang = 'pl' >
+    <head>
+        <title>{% block title %}Home{% endblock %}</title>
+        <link rel = 'stylesheet' href = "{{ url_for( 'static', filename = 'main.css' ) }}">
+        <link rel = 'stylesheet' href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css'/>
+        <link rel = 'stylesheet' href = "{{ url_for( 'static', filename = 'index.css' ) }}">
+        <link rel = 'stylesheet' href = "{{ url_for( 'static', filename = 'login.css' ) }}">
+        <link rel = 'stylesheet' href = "{{ url_for( 'static', filename = 'signup.css' ) }}">
+        <link rel = 'stylesheet' href = "{{ url_for( 'static', filename = 'trip.css' ) }}">
+        <link rel = 'stylesheet' href = "{{ url_for( 'static', filename = 'payment.css' ) }}">
+        <script src = "{{url_for( 'static', filename = 'index.js' )}}"></script>
+        <meta charset = 'UTF-8'>
+        <meta name = 'viewport' content = 'width = device-width, initial-scale = 1'/>
+    </head>
+    <body onload = 'defaultTab();' >
+        <main>
+          <nav>
+            <a class = 'logo' href = '/' >Splitbill</a>
+            <input type = 'checkbox' id = 'click'>
+            <label for = 'click' class = 'menu-btn' >
+              <i class = 'fas fa-bars'></i>
+            </label>
+            <ul>
+              <li><a class = 'active' href = '/' >Strona głowna</a></li>
+              {% if user.is_authenticated %}
+                <li><a href = '/logout' >Wyloguj się</a></li>
+              {% else %}
+                <li><a href = '/login' >Zaloguj się</a></li>
+                <li><a href = '/sign-up' >Zarejestruj się</a></li>
+              {% endif %}
+            </ul>
+          </nav>
+            {% with messages = get_flashed_messages( with_categories = true ) %}
+            {% if messages %} {% for category, message in messages %}
+              {% if category == 'error' %}
+                <div class = 'alert alert-danger' role = 'alert'>{{ message }}</div>
+              {% else %}
+                <div class = 'alert alert-success' role = 'alert'>{{ message }}</div>
+            {% endif %} {% endfor %} {% endif %} {% endwith %}
+            <div class = 'container'>{% block content %} {% endblock %}</div>
+        </main>
+    </body>
+</html>

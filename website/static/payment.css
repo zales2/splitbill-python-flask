@@ -1,0 +1,71 @@
+#img {
+    background: #1b1b1b;
+    height: calc(100% - 30px);
+}
+#payment-img {
+	height: 200px;
+	margin-top: 225px;
+    width: auto;
+}
+#pay-form {
+    height: calc( 100% - 79px );
+}
+.pay2 {
+    margin-top: 30px;
+}
+.pay-element {
+    height: 17%;
+}
+.pay-element:first-of-type {
+    margin-top: 30px;
+    height: 12%;
+}
+.pay-list {
+    height: 20%;
+    margin-left: 5%;
+    margin-top: 25px;
+    width: 90%;
+}
+.pay-list-el {
+    border: none;
+    margin-bottom: 5px;
+}
+.pay-inp1 {
+    height: 85%;
+    width: 80%;
+}
+.pay-inp2 {
+    margin-top: 10px;
+    height: 60%;
+    width: 80%;
+}
+.pay-btn {
+    margin-top: 25px;
+    height: 60%;
+    width: 80%; 
+}
+.pay-btn-flex {
+    display: inline;
+    width: 40%;
+}
+.with-margin {
+    margin-top: 20px;
+}
+.pay-h3 {
+    margin: 0;
+}
+.chceckbox-pay {
+    position: relative;
+    margin-bottom: 12px;
+    cursor: pointer;
+    margin-left: 45px;
+}  
+.pay-grid {
+    display: grid;
+    grid-template-columns: 95% 5%;
+}
+@media ( max-width: 920px ) {
+    .pay-btn .pay-btn-flex { 
+        margin-top: 40px;
+    }
+}

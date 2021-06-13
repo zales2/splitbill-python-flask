@@ -1,0 +1,26 @@
+.signup-element {
+    align-items: center;
+    display: grid;
+    height: 14%;
+    margin-left: 10%;
+    width: 80%;
+}
+.signup-element:first-of-type  {
+	font-size: 36px;
+    height: 24%;
+}
+.signup-ip-btn {
+    height: 60%;
+}
+@media ( max-width: 1200px ) {
+    .signup-element { 
+        width: 60%; 
+        margin-left: 20%;
+    }  
+}
+@media ( max-width: 920px ) {
+    .signup-element { 
+        width: 80%; 
+        margin-left: 10%;
+    }
+}

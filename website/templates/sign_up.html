@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block title %}Zarejestruj się{% endblock %} 
+{% block content %}
+<div class = 'container-content with-img'>
+  <div class = 'container-element element1'>
+    <img id = 'login-img' src = "{{ url_for( 'static', filename = 'login.png' ) }}" alt = 'Login' > 
+  </div>
+  <div class = 'container-element element2'>
+    <form id = 'login-form' method = 'POST' autocomplete = 'off'>
+      <div class = 'signup-element tittle'>Zarejestruj się</div>
+      <div class = 'signup-element'><input class = 'signup-ip-btn' type = 'email' name = 'email' placeholder = 'Email'/></div>
+      <div class = 'signup-element'><input class = 'signup-ip-btn' type = 'text' name = 'nickname' placeholder = 'Pseudonim'/></div>
+      <div class = 'signup-element'><input class = 'signup-ip-btn' type = 'password' name = 'password1' placeholder = 'Nowe hasło'/></div>
+      <div class = 'signup-element'><input class = 'signup-ip-btn' type = 'password' name = 'password2' placeholder = 'Potwierdz hasło'/></div>  
+      <div class = 'signup-element'><button class = 'signup-ip-btn' type = 'submit'>Zarejestruj się</button></div>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %}
+{% block content%}
+<div class = 'container-content device'>
+  <div class = 'flex-container'>
+    <h1>Moje rachunki</h1>
+    <div class = 'list-container trip-list' >
+      <ul>
+        {% for i in range( trip_list|length -1 , -1, -1 ) %}
+          <li class = 'list' >
+            <a class = 'link-list' href = "{{ url_for( 'auth.trip', trip_id = trip_list[ i ].trip_id ) }}" >{{ trip_list[ i ].trip_name }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class = 'flex-container'>
+    <div class = 'flex-element-child'>
+      <h1>Dodaj rachunek</h1>
+        <form method = 'POST' autocomplete = 'off' >
+            <div class = 'add-trip'>
+              <input id = 'add-trip' name = 'trip' type = 'text' placeholder = 'Wprowadz nazwę rachunku' onkeyup = 'disableBtn()' ></input>
+            </div>
+            <div class = 'add-trip'>
+              <button id = 'add-trip-btn' type = 'submit' class = 'button' disabled>Potwierdź</button>
+            </div>
+        </form>
+      </div>
+      <div class = 'flex-element-child'>
+        <h1>Zaproszenia</h1>
+        <div class = 'list-container message-list'>
+          <ul>
+            {% for i in range( message_list|length -1 , -1, -1 ) %}
+            {% if message_list[i].answer != 'tak' %}
+              <li class = 'list'>
+                <button class = 'btn-list' onclick = "ansFunc( '{{ message_list[ i ].message }}' )" >{{ message_list[ i ].message }}</button>
+              </li>
+            {% endif %} {% endfor %}
+          </ul>
+        </div>
+        <div id = 'answers'></div>
+      </div>
+  </div>
+</div>
+{% endblock %}
