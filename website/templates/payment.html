@@ -5,7 +5,7 @@
     <img id = 'payment-img' src = "{{ url_for( 'static', filename = 'payment.png' ) }}" alt = 'Login' >
   </div>
   <div class = 'pay2'>
-    <h1>Dodaj wydatek</h1>
+    <h1 class = 'device-none'>Dodaj wydatek</h1>
     <form method = 'POST' id = 'pay-form' autocomplete = 'off'>
       {% if edit == True %}
         <div class = 'pay-element'><input class = 'pay-inp1' type = 'text' name = 'payment_name' value = '{{ payment.payment_name }}'/></div>

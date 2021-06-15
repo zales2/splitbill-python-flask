@@ -2,15 +2,19 @@
 {% block content%}
 <div class = 'container-content device'>
   <div class = 'flex-container'>
-    <h1>Moje rachunki</h1>
+    <h1 class = 'device-margin'>Moje rachunki</h1>
     <div class = 'list-container trip-list' >
-      <ul>
-        {% for i in range( trip_list|length -1 , -1, -1 ) %}
-          <li class = 'list' >
-            <a class = 'link-list' href = "{{ url_for( 'auth.trip', trip_id = trip_list[ i ].trip_id ) }}" >{{ trip_list[ i ].trip_name }}</a>
-          </li>
-        {% endfor %}
-      </ul>
+      {% if trip_list|length > 0 %}
+        <ul>
+          {% for i in range( trip_list|length -1 , -1, -1 ) %}
+            <li class = 'list' >
+              <a class = 'link-list' href = "{{ url_for( 'auth.trip', trip_id = trip_list[ i ].trip_id ) }}" >{{ trip_list[ i ].trip_name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        Nie masz obecnie dodanych rachunków
+      {% endif %}
     </div>
   </div>
   <div class = 'flex-container'>
@@ -28,14 +32,19 @@
       <div class = 'flex-element-child'>
         <h1>Zaproszenia</h1>
         <div class = 'list-container message-list'>
-          <ul>
-            {% for i in range( message_list|length -1 , -1, -1 ) %}
-            {% if message_list[i].answer != 'tak' %}
-              <li class = 'list'>
-                <button class = 'btn-list' onclick = "ansFunc( '{{ message_list[ i ].message }}' )" >{{ message_list[ i ].message }}</button>
-              </li>
-            {% endif %} {% endfor %}
-          </ul>
+          {% if message_list|length > 0 %}
+            <ul>
+              {% for i in range( message_list|length -1 , -1, -1 ) %}
+                {% if message_list[i].answer != 'tak' %}
+                  <li class = 'list'>
+                    <button class = 'btn-list' onclick = "ansFunc( '{{ message_list[ i ].message }}' )" >{{ message_list[ i ].message }}</button>
+                  </li>
+                {% endif %} 
+              {% endfor %}
+            </ul>
+          {% else %}
+            Brak zaproszeń
+          {% endif %}
         </div>
         <div id = 'answers'></div>
       </div>

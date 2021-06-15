@@ -174,7 +174,43 @@ h3 {
     border: none;
     line-height: 29px;
 }
-
+@media ( max-width: 1200px ) {
+    .device {
+        border: none;
+        display: grid;
+        grid-template-columns: 1fr;
+        height: calc( 140vh - 80px );
+        margin: 50vh 0 0 0;
+        width: 100%;
+    }
+    .flex-container {
+        height: 80vh;
+        width: 100%;
+        margin: 0;
+    }
+    .flex-container:first-of-type {
+        height: 20vh;
+    }
+    #add-trip-btn, #add-trip {
+        width: 100%;
+    }
+    .trip-element .tab {
+        margin-left: 0;
+        width: 100%;
+    }
+    .element1 { display: none; }
+    .alert {
+        height: 72px;
+    }
+    .with-img {
+        border: none;
+        display: grid;
+        grid-template-columns: 1fr;
+        height: 660px;
+        margin-left: 0;
+        width: 100%;
+    } 
+}
 @media ( max-width: 1000px ) {
     nav{
         padding: 0 40px 0 50px;
@@ -217,5 +253,14 @@ h3 {
     nav ul li a:hover {
         background: none;
         color: cyan;
+    }
+    .pay-btn .pay-btn-flex { 
+        margin-top: 40px;
+    }
+    .bill-inp .bil-btn {
+        width: 100%;
+    }
+    input {
+        width: 100%;
     }
 }

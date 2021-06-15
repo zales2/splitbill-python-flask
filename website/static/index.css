@@ -32,23 +32,13 @@
     margin-top: 5%;
 }
 @media ( max-width: 1200px ) {
-    .device {
-        border: none;
-        display: grid;
-        grid-template-columns: 1fr;
-        height: calc( 140vh - 80px );
-        margin: 50vh 0 0 0;
-        width: 100%;
-    }
-    .flex-container {
-        height: 80vh;
-        width: 80%;
-        margin: 0 10%
-    }
-    .flex-container:first-of-type {
-        height: 20vh;
-    }
     .trip-list {
         height: 90%;
+        margin-bottom: 10px;
+    }
+}
+@media ( max-width: 600px ) {
+    .message-list {
+        margin-left: 5px;
     }
 }

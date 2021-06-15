@@ -69,3 +69,34 @@
 #no-admin {
     margin: 70px 40px 0 40px;
 }
+@media ( max-width: 1200px ) {
+    .bill-inp {
+        width: 55%;
+    }
+    .bil-btn2 {
+        width: 25%;
+    }
+    .list {
+        margin-left: 20%;
+        width: 60%;
+    }
+}
+@media ( max-width: 600px ) {
+    .list {
+        margin-left: 10%;
+        width: 80%;
+    }
+    .bill-inp {
+        width: 80%;
+    }
+    .bil-btn2 {
+        margin-top: 10px;
+        width: 80%;
+    }
+    .debt-list-container {
+        margin-left: 5px;
+    }
+    .device-margin {
+        margin-top: 60px;
+    }
+}

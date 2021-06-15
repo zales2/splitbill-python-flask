@@ -2,17 +2,21 @@
 {% block content%}
 <div class = 'container-content device'>
   <div class = 'flex-container'>
-    <h1>Wydatki</h1>
+    <h1 class = 'device-margin'>Wydatki</h1>
     <div class = 'list-container trip-list' >
-      <ul>
-        {% for i in range( payments|length -1 , -1, -1 ) %}
-        <li class = 'list'>
-          <a class = 'link-list' href = "{{ url_for( 'auth.editpayment', payment_id = payments[ i ].payment_id ) }}" title = 'Edytuj wydatek'>
-            {{ payments[ i ].payment_name }}: {{ payments[ i ].price }}
-          </a>
-        </li>
-        {% endfor %}
-      </ul>
+      {% if payments|length > 0 %}
+        <ul>
+          {% for i in range( payments|length -1 , -1, -1 ) %}
+            <li class = 'list'>
+              <a class = 'link-list' href = "{{ url_for( 'auth.editpayment', payment_id = payments[ i ].payment_id ) }}" title = 'Edytuj wydatek'>
+                {{ payments[ i ].payment_name }}: {{ payments[ i ].price }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        Do tego wyjazdu nie zostały dodane żadne płatności
+      {% endif %}
     </div>
   </div>
   <div class = 'flex-container'>
@@ -22,23 +26,26 @@
         <button class = 'tablinks btn-tab' onclick = "openTab( event, 'balance', 'tabcontent', 'tablinks' )">Zwroty</button>
       </div>
       <div id = 'transactions' class = 'tabcontent list-container debt-list-container'>
-        {% if uslist|length != 1 %}
         <ul>
           {% for i in range( uslist|length ) %}
-          <li class = 'list debt-list'>
-            {{ uslist[i] }}: {{ debt[i].user_debt }}  
-          </li>
-          {% endfor %} {% endif %}
+            <li class = 'list debt-list'>
+              {{ uslist[i] }}: {{ debt[i].user_debt }}  
+            </li>
+          {% endfor %} 
         </ul>
       </div>
       <div id = 'balance' class = 'tabcontent list-container debt-list-container'>
-        <ul>
-          {% for transaction in transactions %}
-            <li class = 'list debt-list'>
-              {{ transaction.message }} 
-            </li>
-          {% endfor %}
-        </ul>
+        {% if transactions|length > 0 %}
+          <ul>
+            {% for transaction in transactions %}
+              <li class = 'list debt-list'>
+                {{ transaction.message }} 
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          Brak zwrotów
+        {% endif %}
       </div>
     </div>
     <div class = 'trip-element'>

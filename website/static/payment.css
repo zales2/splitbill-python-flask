@@ -64,8 +64,29 @@
     display: grid;
     grid-template-columns: 95% 5%;
 }
-@media ( max-width: 920px ) {
-    .pay-btn .pay-btn-flex { 
-        margin-top: 40px;
+@media ( max-width: 1200px ) {
+    .pay2 {
+        margin-top: 60px;
+    }
+}
+@media ( max-width: 660px ) {
+    .chceckbox-pay {
+        margin-left: 20px;
+    }
+    .device-none {
+        display: none;
+    }
+    .pay-list {
+        height: 14%;
+        margin-top: 15px;
+    }
+    .pay-element:first-of-type {
+        margin-top: 60px;
+    }
+    .pay-element:last-of-type {
+        margin-top: 30px;
+    }
+    .with-margin {
+        margin-top: 0;
     }
 }
